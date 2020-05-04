@@ -46,6 +46,14 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'khachhang' => [
+            'driver' => 'session',
+            'provider' => 'khachhang',
+        ],
+        'nhanvien' => [
+            'driver' => 'session',
+            'provider' => 'nhanvien',
+        ],
     ],
 
     /*
@@ -69,6 +77,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'khachhang' => [
+            'driver' => 'eloquent',
+            'model' => App\khachhang::class,
+        ],
+        'nhanvien' => [
+            'driver' => 'eloquent',
+            'model' => App\nhanvien::class,
         ],
 
         // 'users' => [

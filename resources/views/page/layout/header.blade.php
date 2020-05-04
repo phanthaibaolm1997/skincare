@@ -18,13 +18,7 @@
 				<!-- Main menu -->
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 					<li class="nav-item">
-						<a class="nav-link" href="index.html">Trang chủ</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="about.html">Danh mục sản phẩm</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="portfolio.html">Giới thiệu</a>
+						<a class="nav-link" href="{{ route('home') }}">Trang chủ</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">Sản phẩm</a>
@@ -32,14 +26,21 @@
 					<li class="nav-item">
 						<a class="nav-link" href="blog.html">Tin tức</a>
 					</li>
+					@if(Session::has('ss_kh_id'))
 					<li class="nav-item">
-						<a class="nav-link" href="contact.html">Liên hệ</a>
-					</li>                                                                
+						<a class="nav-link" href="{{ route('history') }}">Lịch sử</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('logout-khachhang') }}">Thoát</a>
+					</li>
+					@else
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('login-kh') }}">Đăng nhập</a>
+					</li>
+					@endif                                                             
 				</ul>
 				<div class="social-links my-2 my-lg-0">
-					<a href="#"><i class="fa fa-pinterest"></i></a>
-					<a href="#"><i class="fa fa-facebook"></i></a>
-					<a href="#"><i class="fa fa-twitter"></i></a>
+					<a href="{{ route('cart') }}" style="background-color: #c41739; padding: 10px 5px; border-radius: 50%;"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span> 10</span></a>
 				</div>
 			</div>
 		</nav>
