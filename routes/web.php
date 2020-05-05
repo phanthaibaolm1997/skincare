@@ -8,6 +8,8 @@ Route::get('/category/{id}', 'PageController@ProdCat');
 Route::get('/producer/{id}', 'PageController@ProdProducer');
 Route::post('/danhgia', 'PageController@postDanhGia')->name('post.danhgia');
 
+Route::get('/tin-tuc/{id}', 'PageController@getDetailPost')->name('get.post');
+
 Route::group(['prefix'=>'cart'],function(){
     Route::get('/', 'CartController@getCart')->name('cart');
     Route::get('/add', 'CartController@addToCart')->name('add-to-cart');

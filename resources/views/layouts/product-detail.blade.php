@@ -12,14 +12,11 @@
 
 		<div class="sb-widget">
 			<div class="categories-widget">
-				<h2 class="sb-title">Danh mục sản phẩm</h2>
+				<h2 class="sb-title">Danh mục</h2>
 				<ul>
-					<li><a href="#">Fashion</a></li>
-					<li><a href="#">Lifestyle</a></li>
-					<li><a href="#">Travel</a></li>
-					<li><a href="#">Make up</a></li>
-					<li><a href="#">Community</a></li>
-					<li><a href="#">Uncategorized</a></li>
+					@foreach($getAllType as $type)
+						<li><a href="{{ url('/category') }}/{{ $type->ma_lh }}">{{ $type->ten_lh }}</a></li>
+					@endforeach
 				</ul>
 			</div>
 		</div>
@@ -34,7 +31,7 @@
 						<div class="pp-meta">
 							<span>Giá Bán: {{ number_format($recom->hh_dongia)}} đ</span>
 						</div>
-						<h5>{{ $recom->hh_ten }}</h5>
+						<h5><a href="{{ url('/product-detail') }}/{{ $recom->hh_ma }}">{{ $recom->hh_ten }}</a></h5>
 					</div>
 				</div>
 				@endforeach
@@ -126,11 +123,16 @@
 			<form class="comment-form" method="POST" action="{{ route('post.danhgia') }}">
 				<div class="row">
 					<div class="col-md-12">
+						@if(Session::has('ss_kh_id'))
 						<input type="hidden" name="star" id="getStar">
 						<input type="hidden" name="id" value="{{ Request()->id }}">
 						<textarea placeholder="Nhập bình luận của bạn..." name="binhluan"></textarea>
 						@csrf
-						<button class="site-btn sb-dark">Đánh giá <i class="fa fa-angle-double-right"></i></button>
+						
+							<button class="site-btn sb-dark">Đánh giá <i class="fa fa-angle-double-right"></i></button>
+						@else
+							<p>Bạn vui lòng <a href="{{ route('login-kh') }}">đăng nhập</a> để đánh giá sản phẩm</p>
+						@endif
 					</div>
 				</div>
 			</form>

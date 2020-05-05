@@ -1,24 +1,49 @@
 //////////////////////////
 // Slider
-if ($.fn.slider) {
-    $('#sl2').slider();
-}
+// if ($.fn.slider) {
+//     $('#sl2').slider();
+// }
 $(document).ready(function() {
+    $("#slider").slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        // fade: true,
+        autoplay: true,
+        dots: true,
+        autoplaySpeed: 2000
+    });
 
     $("#randProd").slick({
-        slidesToShow: 5,
-        slidesToScroll: 1,
+        slidesToShow: 4,
+        slidesToScroll: 4,
         arrows: true,
         autoplay: true,
         autoplaySpeed: 2000
     });
     $("#recomProd").slick({
-        slidesToShow: 5,
-        slidesToScroll: 1,
+        slidesToShow: 4,
+        slidesToScroll: 4,
         arrows: true,
         autoplay: true,
         autoplaySpeed: 2000
     });
+    $("#slider-image").slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: true,
+        asNavFor: ".slider-image-nav"
+    });
+    $("#slider-image-nav").slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: ".slider-image",
+        dots: true,
+        centerMode: true,
+        focusOnSelect: true
+    });
+
     $('input[type="range"]').rangeslider({
         polyfill: true,
 
@@ -39,8 +64,6 @@ $(document).ready(function() {
         // Callback function
         onSlideEnd: function(position, value) {}
     });
-
-    
 });
 //////////////////////////
 // Ajax
@@ -84,10 +107,8 @@ function ajaxFilterProd() {
     let ncc = $("#nccfilter").val();
     let nsx = $("#nsxfilter").val();
     let key = $("#keyfilter").val();
-    let price = $("#sl2").val();
-    // .data("slider");
-    // alert(price);
-    // .value();
+    let price = $("#sl2").data("sliderValue");
+    console.log(price)
     let type = $("#typefilter").val();
     $.ajax({
         type: "GET",
@@ -96,9 +117,9 @@ function ajaxFilterProd() {
         success: function(response) {
             let obj = response.data;
             let append =
-            '<div class="alert alert-success" role="alert"> Tìm kiếm được ' +
+            '<div class="col-md-12"><div class="alert alert-success" role="alert"> Tìm kiếm được ' +
             obj.length +
-            " sản phẩm</div>";
+            " sản phẩm</div></div>";
             obj.forEach(
                 element =>
                 (append +=
@@ -107,7 +128,7 @@ function ajaxFilterProd() {
                     '<div class="single-products">' +
                     '<div class="productinfo text-center">' +
                     '<div style="height: 250px; overflow: hidden;">' +
-                    '<img src="' +
+                    '<img src="http://127.0.0.1:8000/' +
                     element.hinhanhhanghoa[0].hinhanh.ha_url +
                     '" alt="" />' +
                     "</div>" +

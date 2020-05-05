@@ -53,8 +53,15 @@ class tintuc extends Model
 	}
 
 	public function getTinTucHome($paginate){
-		$data = intuc::with('nhanvien')
+		$data = tintuc::with('nhanvien')
 			->take($paginate)->get();
+		return $data;
+	}
+
+	public function recomPost($number){
+		$data = tintuc::with('nhanvien')
+			->take($number)
+			->get();
 		return $data;
 	}
 }

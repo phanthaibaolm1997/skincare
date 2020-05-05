@@ -8,7 +8,7 @@
                     <input type="text" placeholder="Tìm kiếm...." class="form-control" id="keyfilter">
                     <label style="color: #f3abc1; margin-top: 5px">Lọc giá</label>
                     <div class="well text-center">
-                        <input type="text" class="span2"  value="" data-slider-min="{!! $minPrice !!}" data-slider-max="{!! $maxPrice !!}" data-slider-step="10000" data-slider-value="[{!!$minPrice!!},{!!$maxPrice!!}]" id="sl2" ><br />
+                        <input type="text" class="span2"  data-slider-min="{!! $minPrice !!}" data-slider-max="{!! $maxPrice !!}" data-slider-step="10000" data-slider-value="[{!!$minPrice!!},{!!$maxPrice!!}]" id="sl2" ><br />
                         <b class="pull-left">{{ number_format($minPrice) }} đ</b> <b class="pull-right">{{ number_format($maxPrice) }} đ</b>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                     <label style="color: #f3abc1; margin-top: 5px">Loại sản phẩm</label>
                     <select class="js-example-basic-multiple" id="typefilter" name="type[]" multiple="multiple" style="width: 100%">
                     @foreach($getCategories as $cat)
-                        <option value="{{ $cat->loaihang_id}}">{{ $cat->loaihang_ten }}</option>
+                        <option value="{{ $cat->ma_lh}}">{{ $cat->ten_lh }}</option>
                     @endforeach
                     </select>
                     <div class="row">
@@ -38,7 +38,8 @@
                             </select>
                         </div>
                     </div>
-                    <p class="text-center">
+                    <br/>
+                    <p class="text-left">
                         <button class="btn btn-primary" onclick="ajaxFilterProd()">Tìm Kiếm</button>
                     </p>
                 </div>

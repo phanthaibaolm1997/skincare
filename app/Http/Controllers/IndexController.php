@@ -14,7 +14,7 @@ class IndexController extends Controller
     	// Create models
     	$hanghoa = new hanghoa();
     	$loaihang = new loaihang();
-    	// $quocgia = new quocgia();
+    	$tintuc = new tintuc();
 
     	// Call query from Models
     	$data['newProd'] = $hanghoa->getNewProd(6);

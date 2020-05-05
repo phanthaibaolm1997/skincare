@@ -11,6 +11,7 @@ use App\nhacungcap;
 use App\donhang;
 use App\khachhang;
 use App\danhgia;
+use App\tintuc;
 
 class PageController extends Controller
 {
@@ -27,6 +28,7 @@ class PageController extends Controller
     	// query
 		$data["detailProd"] = $hanghoa->detailProd($id);
 		$data['getCategories'] = $loaihang->getAllLoaiHang();
+		$data['getAllType'] = $loaihang->getAllType();
 
 		$data['maxPrice'] = $hanghoa->maxPrice();
 		$data['minPrice'] = $hanghoa->minPrice();
@@ -107,7 +109,7 @@ class PageController extends Controller
 		$ncc = $request->ncc;
 		$nsx = $request->nsx;
 		$price = $request->price;
-		$price = explode(",",$price);
+		// $price = explode(",",$price);
 		$type = $request->type;
 
 		//call model
@@ -148,5 +150,16 @@ class PageController extends Controller
 		$danhgia->postDanhGia($id,$kh,$text,$star);
 
 		return redirect()->back()->with('success', "Đánh giá thành công!!");
+	}
+
+	public function getDetailPost($id){
+		$tintuc = new tintuc();
+		$loaihang = new loaihang();
+
+		$data['getDetailPost'] = $tintuc->getDetailPost($id);
+		$data['getAllType'] = $loaihang->getAllType();
+		$data['recomPost'] = $tintuc->recomPost(8);
+
+		return view('layouts.post-detail',$data);
 	}
 }

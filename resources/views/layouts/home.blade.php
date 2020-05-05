@@ -23,7 +23,7 @@
 								@if(Session::has('ss_kh_id'))
 								ajaxAddToCart('{!! url("/cart/add") !!}',{!! $prod->hh_ma !!}, 1, {!! $prod->hh_dongia !!}, {{ Session('ss_kh_id')}})
 								@else
-								ajaxAddToCart('{!! url("/cart/add") !!}',{!! $prod->hh_ma !!}, 1, {!! $prod->hh_dongia !!}, 1)
+								 checkLogin();
 								@endif">
 								<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 							</button>
@@ -69,9 +69,9 @@
 								<p class="textoneline">{{ $prodCat->hh_ten }}</p>
 								<button class="btn btn-default " onclick="
 								@if(Session::has('ss_kh_id'))
-								ajaxAddToCart('{!! url("/cart/add") !!}',{!! $prodCat->hh_ma !!}, 1, {!! $prodCat->hh_dongia !!}, {{ Session('ss_kh_id')}})
+									ajaxAddToCart('{!! url("/cart/add") !!}',{!! $prodCat->hh_ma !!}, 1, {!! $prodCat->hh_dongia !!}, {{ Session('ss_kh_id')}})
 								@else
-								ajaxAddToCart('{!! url("/cart/add") !!}',{!! $prodCat->hh_ma !!}, 1, {!! $prodCat->hh_dongia !!}, 1)
+									checkLogin();
 								@endif
 								">
 								<i class="fa fa-shopping-cart"></i> Thêm
@@ -97,14 +97,14 @@
 	<h2 class="title-heading"> <i class="fa fa-caret-right" aria-hidden="true"></i> Tin tức</h2>
 	<div class="row">
 		@foreach($getAllTinTuc as $post)
-		<div class="col-md-2">
+		<div class="col-md-4">
 			<div class="product">
 				<div class="contain-image d-flex">
 					<img src="{{ asset($post->tin_avatar) }}" class="img-product-avt" alt="" />
 				</div>
 				<div class="price-product">
-					<h4 class="title-prod text-one-line">{{ $post->tin_ten }}</h4>
-					<h5 class="price-prod">{{ number_format($post->nhanvien->nv_hoten) }} đ</h5>
+					<h4 class="title-prod text-one-line"><a href="{{ url('/tin-tuc/') }}/{{ $post->tin_ma }}">{{ $post->tin_ten }}</a></h4>
+					<small>{{ $post->created_at }}</small>
 				</div>
 			</div>
 		</div>
