@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"/>
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.css') }}"/>
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick-theme.css') }}"/>
-	{{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/login.css') }}"/> --}}
+	<link rel="stylesheet" type="text/css" href="{{ asset('styles.css') }}"/>
 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 </head>
 <body>

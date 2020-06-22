@@ -21,18 +21,18 @@ class CartController extends Controller
 
 
 	public function addToCart(Request $request) {
-		// Call model
+
 		$giohang = new giohang();
 		$cart = new chitietgiohang();
 		$hanghoa = new hanghoa();
-		// Pretreatment 
+
 		$dataGioHang = $giohang->getCart($request->userId);
-		// Get Param
+
 		$gh_id = $dataGioHang->gh_id;
 		$hh_ma = $request->idProd;
 		$quality = $request->quality;
 		$price = $request->price;
-		// Query
+
 		$cart->createOrUpdateCart($gh_id,$hh_ma,$quality,$price);
 		$hanghoa->subtractQuality($hh_ma,$quality);
 		return response()->json("SUCCESED",200);
@@ -96,6 +96,7 @@ class CartController extends Controller
 		$dh_sdt = $request->dh_sdt;
 		$dh_ghichu = $request->dh_ghichu;
 		$pttt = $request->pttt;
+		$coin = $request->coin;
 
 		// Query
 		$dataGioHang = $giohang->getCart($kh_id);
@@ -106,6 +107,8 @@ class CartController extends Controller
 			$ctdh->createDetailDH($dh_id,$detailcart->hh_ma,$detailcart->ctgh_dongia,$detailcart->ctgh_soluong);
 		}
 		$dataKH = $khachhang->getInfoKH($kh_id);
+		$coinCurrent = $coin + $dataKH->kh_coin;
+		$khachhang->addCoin($kh_id, $coinCurrent);
 
 		$hanmuc = $dataKH->loaikhachhang->lkh_hanmuctien;
 		$lkh_ma =  $dataKH->lkh_ma +1;

@@ -3,15 +3,8 @@
 <?php $totalPrice = 0; ?>
 <section id="cart_items">
 	<form method="POST" action="{{ route('checkout.checkout') }}">
-		<div class="breadcrumbs">
-			<ol class="breadcrumb">
-				<li><a href="{{ url('/') }}">Trang chủ</a></li>
-				<li class="active">Thanh toán</li>
-			</ol>
-		</div>
 		<div class="step-one">
-			<h2 class="heading">Bước 1: Thông tin</h2>
-			
+			<h4 class="headcheck">Bước 1: Thông tin</h4>
 		</div>	
 		<div class="shopper-informations">
 			<div class="row">
@@ -45,7 +38,7 @@
 			</div>
 		</div>
 		<div class="step-one">
-			<h2 class="heading">Bước 2: Kiểm tra và Thanh toán</h2>
+			<h4 class="headcheck">Bước 2: Kiểm tra và Thanh toán</h4>
 		</div>
 
 		<div class="table-responsive cart_info">
@@ -84,15 +77,41 @@
 					<?php $totalPrice += ($cart->ctgh_dongia * $cart->ctgh_soluong ); ?>
 					@endforeach
 					<tr>
-						<td colspan="3">&nbsp;</td>
+						<td colspan="3">
+							<div class="step-one">
+								<h4 class="headcheck">Bước 3: Phương thức thanh toán</h4>
+							</div>
+							<div class="payment-options">
+								<div id="paypal-button-container"></div>
+								<select class="form-control" name="pttt" id="selectOnChange">
+									<option value="">---- Chọn phương thức ---- </option>
+									@foreach($getPTTT as $pttt)
+									<option value="{{ $pttt->pttt_ma }}" attr-price="{{$pttt->pttt_gia}}"> {{ $pttt->pttt_ten }}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="step-one">
+								<h4 class="headcheck">Bước 4: Thanh toán</h4>
+							</div>
+							<div class="payment-options">
+								<p class="text-center"><button class="btn btn-warning" name="checkOut" id="checkOutForm" type="submit"><i class="fa fa-credit-card text-white" aria-hidden="true"></i> Thanh Toán</button></p>
+							</div>
+						</td>
 						<td colspan="2">
 							<table class="table table-condensed total-result">
+								<h4 class="headcheck">KIỂM TRA CUỐI</h4>
+								<tr>
+									<th>Tích Coin </th>
+									<input type="hidden" name="coin" value="{{ $totalPrice *($getInfoKH->loaikhachhang->percent/100) }}">
+									<td>{{number_format($totalPrice *($getInfoKH->loaikhachhang->percent/100)) }} coin</td>
+								</tr>
+								</tr>
 								<tr class="shipping-cost">
-									<td>Shipping</td>
-									<td id="ship"> ... loading ....</td>										
+									<th>Giá Ship</th>
+									<td id="ship"> <a href="#" class="badge badge-info">Loadding....</a></td>										
 								</tr>
 								<tr>
-									<td>Tổng</td>
+									<th>Giá Hóa Đơn </th>
 									<td><span id="fee">{{ number_format($totalPrice) }} đ</span></td>
 								</tr>
 							</table>
@@ -100,33 +119,6 @@
 					</tr>
 				</tbody>
 			</table>
-		</div>
-		<div class="step-one">
-			
-		</div>
-		<div class="row">
-			<div class="col-sm-6">
-				<div class="step-one">
-					<h2 class="heading">Bước 3: Phương thức thanh toán</h2>
-				</div>
-				<div class="payment-options">
-					<div id="paypal-button-container"></div>
-					<select class="form-control" name="pttt" id="selectOnChange">
-						<option value="">---- Chọn phương thức ---- </option>
-						@foreach($getPTTT as $pttt)
-						<option value="{{ $pttt->pttt_ma }}" attr-price="{{$pttt->pttt_gia}}"> {{ $pttt->pttt_ten }}</option>
-						@endforeach
-					</select>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="step-one">
-					<h2 class="heading">Bước 4: Thanh toán</h2>
-				</div>
-				<div class="payment-options">
-					<p class="text-center"><button class="btn btn-primary" name="checkOut" id="checkOutForm" type="submit">Xác nhận thanh toán</button></p>
-				</div>
-			</div>
 		</div>
 		@csrf
 	</form>
@@ -194,7 +186,7 @@
 			}
 			else{
 				$('#paypal-button-container').fadeOut();
-				$('#ship').html(price + 'VND');
+				$('#ship').html(price + 'đ');
 			}
 		});
 	});

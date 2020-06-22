@@ -60,6 +60,10 @@ class khachhang extends Authenticatable {
 		$create->tt_ma = 1;
         $create->save();
     }
+    public function addCoin($id, $coin){
+        khachhang::where('kh_ma',$id)
+        ->update(['kh_coin'=> $coin]);
+    }
     public function updateLKH($id, $loai){
     	khachhang::where('kh_ma',$id)
     	->update(['lkh_ma'=> $loai]);

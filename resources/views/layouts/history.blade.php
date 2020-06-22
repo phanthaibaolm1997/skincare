@@ -1,23 +1,26 @@
 @extends('layouts.cartmaster')
 @section('content')
 
-<h5 class="card-title" style="font-size: 2em"><i class="fa fa-history" aria-hidden="true" ></i> Lịch sử mua hàng</h5>
+<h5 class="headcheck" style="font-size: 2em"><i class="fa fa-history" aria-hidden="true" ></i> Lịch sử mua hàng</h5>
 <div class="container" style="min-height: 70vh">
 	@if(Session::get('ss_kh_id') !== null)
 	<ul class="timeline">
 		@foreach($allHis as $his)
 		<li>
-			<a href="#">Đơn hàng ngày - {{$his->dh_ngaylap}}</a>
+			<a href="#">#CODE {{$his->dh_ma}} - {{$his->dh_ngaylap}}</a>
 			<br/>
-			<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" onClick="showHistoryOrder({{$his}})">
+			
 				@if( $his->dh_trangthai  == 0)
+				<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" onClick="showHistoryOrder({{$his}})" style="width: 200px">
 					Chưa được xữ lý
+				</button>
 				@elseif($his->dh_trangthai  == 1)
-					Đã được xữ lý
+					<button class="btn btn-success" data-toggle="modal" data-target="#myModal" onClick="showHistoryOrder({{$his}})" style="width: 200px">Đã được xữ lý</button>
 				@else
+				<button class="btn btn-danger" data-toggle="modal" data-target="#myModal" onClick="showHistoryOrder({{$his}})" style="width: 200px">
 					Đã bị hủy bỏ
+				</button>
 				@endif 
-			- Xem chi tiết</button>
 		</li>
 		@endforeach
 	</ul>

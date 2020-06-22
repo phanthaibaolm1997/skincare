@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}"/>
 	<link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css')}}"/>
 	<link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css')}}"/>
-	<link rel="stylesheet" href="{{ asset('styles.css')}}"/>
+	<link rel="stylesheet" href="{{ asset('/styles.css')}}"/>
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.css') }}"/>
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick-theme.css') }}"/>
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
