@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300i,400,500,600&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+/*@import url('https://fonts.googleapis.com/css?family=Poppins:300i,400,500,600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');*/
 body {
-    font-family: 'Montserrat' !important;
+    font-family: 'Montserrat', sans-serif !important;
+
 }
 .main{
 	width: 90%;
@@ -79,3 +80,4 @@ body {
 	object-fit: cover;
 	width: 100%;
 }
+

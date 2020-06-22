@@ -2,79 +2,72 @@
 @section('content')
 
 <div class="container-fluid">
-	<div class="app-page-title">
-		<div class="page-title-wrapper">
-			<div class="page-title-heading">
-				<div class="page-title-icon">
-					<i class="pe-7s-voicemail icon-gradient bg-arielle-smile">
-					</i>
-				</div>
-				<div>Sản phẩm & Hàng hóa - thêm mới
-					<div class="page-title-subheading">Trái đất cứ lặng lẽ quay.. quay quay quay vô tận mãi mãi...
-					</div>
-				</div>
-			</div>    
+	<div class="main-card card">
+		<div class="card-body" style="background-color: #59afec;">
+			<div class="d-flex">
+				<h5 style="flex: 1; line-height: 45px; color: #fff;">THÊM MỚI SẢN PHẨM</h5>
+				{{-- <a href="{{ route('hanghoa.add') }}"><button style="flex-basis: auto;" class="btn btn-success">THÊM MỚI</button></a> --}}
+			</div>
 		</div>
-	</div> 
+	</div>
 	<form method="POST" action="{{ route('prod.add.post') }}" enctype="multipart/form-data">
 		<div class="row">
 			<div class="col-md-9">
 				<div class="main-card card">
 					<div class="card-body"style="min-height: 75vh">
 						<ul class="nav nav-tabs">
-						  <li class="nav-item">
-							<a class="nav-link active" data-toggle="tab" href="#tab1">Thông tin sản phẩm</a>
-						  </li>
-						  <li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#tab2">Hình ảnh</a>
-						  </li>
-						  <li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#tab3">Chi tiết tính năng</a>
-						  </li>
+							<li class="nav-item">
+								<a class="nav-link active" data-toggle="tab" href="#tab1">Thông tin sản phẩm</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#tab2">Hình ảnh</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#tab3">Chi tiết tính năng</a>
+							</li>
 						</ul>
 						<div class="tab-content">
-						  <div class="tab-pane container active" id="tab1">
-						  	<h5 class="card-title">Tên sản phẩm</h5>
-							<input type="text" name="name_hh" placeholder="Nhập tên hàng hóa" class="form-control" required>
 							<br/>
-							<textarea id="editor" name="des" required></textarea>
-							<script>
-								CKEDITOR.replace( 'editor',{height: 600} );
-							</script>
-							<br>
-							<span class="card-title">Giá Sản phẩm</span>
-							<div style="width: 50%">
-								<input type="text" name="price" placeholder="Giá sản phẩm" class="form-control" required>
-							</div>						  
-						</div>
-						  <div class="tab-pane container fade" id="tab2">
-						  	<span class="card-title">Hình ảnh</span>
-							<input type="file" multiple id="gallery-photo-add" required name="imgup[]">
-							<div class="gallery"></div>
-						  </div>
-						  <div class="tab-pane container fade" id="tab3">
-						  	<h5 class="card-title">Tính năng sản phẩm</h5>
-						  	<div style="display: flex">
-							  	<select class="form-control" style="flex: 1" id="selectdt">
-							  		@foreach($getAllDatTinh as $dt)
-							  			<option value="{{$dt->dt_ma}}">{{$dt->dt_ten}}</option>
-							  		@endforeach
-							  	</select>
-							  		<button class="btn btn-primary" id="btndt" style="flex-basis: auto; margin-left: 10px" type="button">+</button>
-							  	</div>
-							  	<br/>
-							  	<h5 class="card-title">Tính năng thêm mới</h5>
-							  	<table class="table table-bordered">
-								  	<tr>
-								  		<td>Tên Thuộc tính</td>
-								  		<td>Giá trị</td>
-								  		<td>Thao tác</td>
-								  	</tr>
-								  	<tbody id="table-content">
-								  		
-								  	</tbody>
+							<div class="tab-pane container active" id="tab1">
+								<input type="text" name="name_hh" placeholder="Nhập tên hàng hóa" class="form-control" required>
+								<br/>
+								<textarea id="editor" name="des" required></textarea>
+								<script>
+									CKEDITOR.replace( 'editor',{height: 600} );
+								</script>
+								<br>
+								<div style="width: 50%">
+									<input type="text" name="price" placeholder="Giá sản phẩm" class="form-control" required>
+								</div>						  
+							</div>
+							<div class="tab-pane container fade" id="tab2">
+								<span class="card-title">Hình ảnh</span>
+								<input type="file" multiple id="gallery-photo-add" required name="imgup[]">
+								<div class="gallery"></div>
+							</div>
+							<div class="tab-pane container fade" id="tab3">
+								<label> Tính Năng Sản Phẩm</label>
+								<div style="display: flex">
+									<select class="form-control" style="flex: 1" id="selectdt">
+										@foreach($getAllDatTinh as $dt)
+										<option value="{{$dt->dt_ma}}">{{$dt->dt_ten}}</option>
+										@endforeach
+									</select>
+									<button class="btn btn-primary ml-2" style="margin: 0px" id="btndt" style="flex-basis: auto; margin-left: 10px" type="button">Thêm vào</button>
+								</div>
+								<br/>
+								<label> Danh sách tính năng</label>
+								<table class="table table-bordered">
+									<tr>
+										<td>Tên Thuộc tính</td>
+										<td>Giá trị</td>
+										<td>Thao tác</td>
+									</tr>
+									<tbody id="table-content">
+
+									</tbody>
 								</table>
-						  	</div>
+							</div>
 						</div>
 					</div>
 
@@ -83,15 +76,14 @@
 			<div class="col-md-3">
 				<div class="main-card card md-3">
 					<div class="card-body">
-						<h5 class="card-title">Loại hàng hóa</h5>
+						<label>Loại Hàng</label>
 						<select class="form-control" required name="type">
 							@foreach($getAllType as $type)
 							<option value="{{ $type->ma_lh }}">{{ $type->ten_lh }}</option>
 							@endforeach
 						</select>
-					</div>
-					<div class="card-body">
-						<h5 class="card-title">Lô Hàng</h5>
+						<br/>
+						<label> Lô Hàng</label>
 						<div class="d-flex">
 							<div style="flex: 1;margin-right: 5px;">
 								<select class="form-control" required name="lohang">
@@ -101,23 +93,22 @@
 								</select>
 							</div>
 							<div style="flex-basis: 50px">
-								<button class="btn btn-primary"  data-toggle="modal" data-target="#myModal">...</button>
+								<button class="btn btn-primary" style="margin: 0px" data-toggle="modal" data-target="#myModal">...</button>
 							</div>
 						</div>
-						<br/>
-						<h5 class="card-title">Số lượng</h5>
+						<label> Số lượng</label>
 						<input type="number" name="number" placeholder="Số lượng" class="form-control" required>
 						<br/>
-						<h5 class="card-title">Ngày nhập</h5>
+						<label>Ngày nhập</label>
 						<input type="date" name="date" placeholder="Ngày nhập hàng" class="form-control" required>
 						<br/>
-						<h5 class="card-title">Ngày sản xuất</h5>
+						<label>Ngày sản xuất</label>
 						<input type="date" name="ngaysx" placeholder="Ngày nhập hàng" class="form-control" required>
 						<br/>
-						<h5 class="card-title">Hạn sử dụng</h5>
+						<label>Hạn sử dụng</label>
 						<input type="date" name="hansd" placeholder="Ngày nhập hàng" class="form-control" required>
 						<br/>
-						<h5 class="card-title">Giá Gốc</h5>
+						<label>Giá nhập</label>
 						<input type="number" name="giagoc" placeholder="Nhập giá gốc" class="form-control" required>
 						<input type="hidden" name="arrKey[]" id="arrKey">
 						<input type="hidden" name="arrName[]" id="arrName">
@@ -158,10 +149,10 @@
 			let keys = new Array();
 			let names = new Array();
 			$("input[name='key[]']").each(function() {
-			    keys.push($(this).val());
+				keys.push($(this).val());
 			});
 			$("input[name='name[]']").each(function() {
-			    names.push($(this).val());
+				names.push($(this).val());
 			});
 			$('#arrName').val(names);
 			$('#arrKey').val(keys);
@@ -172,17 +163,17 @@
 <div class="modal fade" id="myModal" role="dialog">
 	<form method="POST" action="{{ route('lohang.add.post') }}">
 		<div class="modal-dialog modal-lg">
-		  	<div class="modal-content">
+			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="card-title">Thêm một Lô Hàng mới</h5>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
-			  		<h5 class="card-title">Tên Lô Hàng</h5>
-			  		<input type="text" name="name" class="form-control" placeholder="Nhập Tên Lô Hàng..." required>
-			  		<br/>
-			  		<div class="row">
-				  		<div class="col-md-6">
+					<h5 class="card-title">Tên Lô Hàng</h5>
+					<input type="text" name="name" class="form-control" placeholder="Nhập Tên Lô Hàng..." required>
+					<br/>
+					<div class="row">
+						<div class="col-md-6">
 							<h5 class="card-title">Ngày nhập</h5>
 							<input type="date" name="date" class="form-control" required>
 						</div>
@@ -196,7 +187,7 @@
 					<textarea class="form-control" name="des" placeholder="Nhập mô tả..." rows="5" required></textarea>
 					<br/>
 					<div class="row">
-			  			<div class="col-md-6">
+						<div class="col-md-6">
 							<h5 class="card-title">Nhà cung cấp</h5>
 							<select class="form-control" name="ncc" required>
 								@foreach($allNCC as $ncc)
@@ -217,9 +208,9 @@
 					<br/>
 				</div>
 				<div class="modal-footer">
-				  	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				  	<button type="submit" class="btn btn-primary">Thêm</button>
-			  	</div>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Thêm</button>
+				</div>
 			</div>
 		</div>
 	</form>

@@ -9,18 +9,14 @@ class giohang extends Model
     protected $table = "giohang";
 	public $primaryKey = "gh_id";
 
-	protected $fillable = [
-		'gh_id','kh_ma'
-   ];
-
 	// relationship
 	public function khachhang()
    	{
-       return $this->belongsTo('App\khachhang', 'kh_ma','kh_ma');
+       return $this->belongsTo('App\khachhang', 'kh_ma');
 	}
 	public function chitietgiohang()
 	{
-	return $this->hasMany('App\chitietgiohang', 'gh_id','gh_id')->with('hanghoa');
+	return $this->hasMany('App\chitietgiohang', 'gh_id')->with('hanghoa');
 	}
 
 	//Query

@@ -21,11 +21,11 @@ class khachhang extends Authenticatable {
 	}
 	public function giohang()
 	{
-		return $this->hasMany('App\giohang', 'gh_id')->with('chitietgiohang');
+		return $this->hasMany('App\giohang', 'kh_ma')->with('chitietgiohang');
 	}
 	public function donhang()
 	{
-		return $this->hasMany('App\donhang' ,'dh_ma')->with('chitietdonhang');
+		return $this->hasMany('App\donhang' ,'kh_ma')->with('chitietdonhang');
 	}
 	public function danhgia()
     {
@@ -42,6 +42,9 @@ class khachhang extends Authenticatable {
    	// Query
 	public function getInfoKH($id){
 		return khachhang::with('loaikhachhang')
+        ->with('giohang.chitietgiohang.hanghoa.hinhanhhanghoa.hinhanh')
+        ->with('donhang.chitietdonhang.hanghoa')
+        ->with('danhgia')
 		->where("kh_ma",$id)
 		->first();
 	}

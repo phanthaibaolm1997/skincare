@@ -98,6 +98,7 @@ Route::group(['prefix'=>'admin'],function(){
     });
     Route::group(['prefix'=>'khachhang'],function(){
         Route::get('/', 'KhachHangController@getAllKH')->name('admin.khachhang.get');
+        Route::get('/info/{id}', 'KhachHangController@adminKHDetail')->name('admin.infoKH.get');
         Route::post('/add', 'KhachHangController@createKhachHang')->name('khachhang.add.post');
         Route::post('/changepwd', 'KhachHangController@changePwdKH')->name('khachhang.changepwd.post');
         Route::post('/edit', 'KhachHangController@editKhachHang')->name('khachhang.edit.post');

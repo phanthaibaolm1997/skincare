@@ -65,4 +65,9 @@ class KhachHangController extends Controller {
 		return redirect()->back()->with('error', "Thêm mới thất bại!!");
 
     }
+    public function adminKHDetail($id){
+        $khachhang = new khachhang();
+        $data['infoKH'] = $khachhang->getInfoKH($id);
+        return view('admin.khachhang_detail',$data);
+    }
 }
