@@ -14,7 +14,6 @@
 						<span class="badge badge-pill badge-info p-2"> {{ $getInfoKH->loaikhachhang->lkh_ten }}</span>
 					</div>
 				</div>
-
 				<div class="profile-userbuttons">
 					<button type="button" class="btn btn-success btn-sm">Follow</button>
 					<button type="button" class="btn btn-danger btn-sm">Message</button>
@@ -53,31 +52,49 @@
 		<div class="col-md-9">
 			<div class="card p-2">
 				<p class="text-right mb-0">Số Coin: <span class="badge badge-pill badge-warning p-2">{{ $getInfoKH->kh_coin }}</span></p>
+				<?php $percent = round($totalNum/$nextLKH->lkh_hanmuctien*100); ?>
+				<p class="mb-1">Số tiền hiện tại <strong>{{ number_format($totalNum)}} đ</strong>, Level up ở <strong>{{ number_format($nextLKH->lkh_hanmuctien) }} đ</strong></p>				
+				<div class="progress">
+				  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{ $percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent }}%">{{ $percent }} %</div>
+				</div>
+				<span> </span>
 			</div>
 			<div class="profile-content">
-
-				@if(Session::get('ss_kh_id') !== null)
-				<ul class="timeline">
+				<h5>Bạn đang là khách hàng 
+					<span class="badge badge-pill badge-warning p-2">{{ $getInfoKH->loaikhachhang->lkh_ten }}</span> Được tích
+					<span class="badge badge-pill badge-warning p-2">{{ $getInfoKH->loaikhachhang->percent }} %</span> trên mổi đơn hàng 
+				</h5>
+				<div class="row">
+					<div class="col-md-12">
+						@if(Session::get('ss_kh_id') !== null)
+					<h5 class="headcheck">Lịch sử đơn hàng</h5>
 					@foreach($allHis as $his)
-					<li class="mb-3">
+					<div class="hihihaha">
 						<a href="#">#CODE {{$his->dh_ma}} - {{$his->created_at}}</a>
 						<br/>
 
 						@if( $his->dh_trangthai  == 0)
-						<button class="btn btn-primary" data-toggle="modal" data-target="#myModal" onClick="showHistoryOrder({{$his}})" style="width: 200px">
-							Chưa được xữ lý
+						<span class="text-warning">Đơn hàng đang chờ</span>
+						<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal" onClick="showHistoryOrder({{$his}})" style="float: right;">
+							Xem
 						</button>
 						@elseif($his->dh_trangthai  == 1)
-						<button class="btn btn-success" data-toggle="modal" data-target="#myModal" onClick="showHistoryOrder({{$his}})" style="width: 200px">Đã được xữ lý</button>
+						<span class="text-success">Đơn hàng thành công</span>
+						<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal" onClick="showHistoryOrder({{$his}})" style="float: right;">Xem</button>
 						@else
-						<button class="btn btn-danger" data-toggle="modal" data-target="#myModal" onClick="showHistoryOrder({{$his}})" style="width: 200px">
-							Đã bị hủy bỏ
+						<span class="text-danger">Đơn hàng bị hủy</span>
+						<button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal" onClick="showHistoryOrder({{$his}})" style="float: right;">
+							Xem
 						</button>
 						@endif 
-					</li>
+					</div>
 					@endforeach
-				</ul>
 				@else
+					</div>
+					<div class="col-md-6">
+					</div>
+				</div>
+				
 				<div>
 					<h3 style="margin-top: 20vh" class="text-center">Vui lòng đăng nhập</h3>
 					<p class="text-center"><a href="{{ route('login-kh') }}">Đăng nhập</a></p>

@@ -57,6 +57,12 @@ class donhang extends Model
 		->paginate($paginate);
 		return $data;
 	}
+	public function getAllDHKH($id){
+		$data = donhang::where(['kh_ma'=>$id])
+		->with('chitietdonhang')
+		->get();
+		return $data;
+	}
 	public function getAllOrderChecked($paginate){
 		$data = donhang::where('dh_trangthai',1)
 		->with('khachhang')

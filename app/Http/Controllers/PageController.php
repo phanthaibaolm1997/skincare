@@ -12,6 +12,7 @@ use App\donhang;
 use App\khachhang;
 use App\danhgia;
 use App\tintuc;
+use App\loaikhachhang;
 
 class PageController extends Controller
 {
@@ -127,8 +128,18 @@ class PageController extends Controller
 		$id =  Session::get('ss_kh_id');
 		$donhang = new donhang();
 		$khachhang = new khachhang();
+		$loaikhachhang = new loaikhachhang();
 		$data['getInfoKH'] = $khachhang->getInfoKH($id);
-		
+		$lkh_ma = $data['getInfoKH']->loaikhachhang->lkh_ma +1;
+        $data['nextLKH'] = $loaikhachhang->getLKHbyID($lkh_ma);
+        $data['allDH'] = $donhang->getAllDHKH($id);
+        $number = 0;
+        foreach ($data['allDH'] as $dh) {
+          foreach ($dh->chitietdonhang as $ctdh) {
+            $number += $ctdh->ctdh_soluong * $ctdh->ctdh_dongia;
+          }
+        }
+        $data['totalNum']= $number;
 		$data['allHis'] = $donhang->getOrderByKH($id);
 		return view('layouts.history',$data);
 	}

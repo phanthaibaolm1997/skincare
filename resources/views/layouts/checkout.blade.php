@@ -94,7 +94,12 @@
 								<h4 class="headcheck">Bước 4: Thanh toán</h4>
 							</div>
 							<div class="payment-options">
-								<p class="text-center"><button class="btn btn-warning" name="checkOut" id="checkOutForm" type="submit"><i class="fa fa-credit-card text-white" aria-hidden="true"></i> Thanh Toán</button></p>
+								<p class="text-center">
+									
+								</p>
+								<p class="text-center">
+									<button class="btn btn-success mr-2" type="button" onclick="substract(`{{ $getInfoKH->kh_coin }}`,`{{$totalPrice}}`)"> Sử dụng coin</button><button class="btn btn-warning" name="checkOut" id="checkOutForm" type="submit"><i class="fa fa-credit-card text-white" aria-hidden="true"></i> Thanh Toán</button>
+								</p>
 							</div>
 						</td>
 						<td colspan="2">
@@ -190,4 +195,19 @@
 			}
 		});
 	});
+</script>
+<script type="text/javascript">
+
+	function substract(coin,price){
+		
+		if(coin < price){
+			var result = price - coin;
+			var hahahihi = result+' đ';
+			$('#fee').html(hahahihi);
+		}else{
+			var result = price - coin;
+			$('#fee').html('0 đ');
+		}
+		
+	}
 </script>
