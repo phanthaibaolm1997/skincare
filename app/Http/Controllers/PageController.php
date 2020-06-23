@@ -126,6 +126,9 @@ class PageController extends Controller
 	public function getHistory(Request $request){
 		$id =  Session::get('ss_kh_id');
 		$donhang = new donhang();
+		$khachhang = new khachhang();
+		$data['getInfoKH'] = $khachhang->getInfoKH($id);
+		
 		$data['allHis'] = $donhang->getOrderByKH($id);
 		return view('layouts.history',$data);
 	}
