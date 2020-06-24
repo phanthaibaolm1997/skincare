@@ -176,4 +176,9 @@ class hanghoa extends Model
 		return $data;
 	}
 
+	public function updateSoLuong($hh_ma,$soluong){
+		$data = hanghoa::where('hh_ma',$hh_ma)->update(['hh_conlai'=>$soluong]);
+	}
+
+
 }

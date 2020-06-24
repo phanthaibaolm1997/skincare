@@ -60,6 +60,12 @@ class khachhang extends Authenticatable {
 		$create->tt_ma = 1;
         $create->save();
     }
+
+    public function ongChamChi(){
+        return khachhang::with(['donhang','loaikhachhang'])
+        ->get();
+    }
+
     public function addCoin($id, $coin){
         khachhang::where('kh_ma',$id)
         ->update(['kh_coin'=> $coin]);

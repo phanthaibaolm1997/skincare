@@ -53,6 +53,12 @@
 									<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal{{ $prod->hh_ma }}">
 										<i class="fa fa-info" aria-hidden="true"></i>
 									</button>
+									@if($prod->hh_conlai <= 0)
+                                        <br/>
+                                        <button type="button" class="btn btn-warning mt-2" data-toggle="modal" data-target="#nhapHang{{ $prod->hh_ma }}">
+                                            <i class="fa fa-plus" aria-hidden="true"></i> Nhập thêm hàng
+                                        </button>
+                                    @endif
 								</td>
 							</tr>
 							@endforeach
@@ -116,5 +122,50 @@
 			</div>
 		</div>
 	</div>
+</div>
+@endforeach
+@foreach($allProd as $prod)
+<div class="modal fade" id="nhapHang{{ $prod->hh_ma }}" role="dialog">
+    <form action="{{ route('admin.lohang.addOld', $prod->hh_ma ) }}" method="post" accept-charset="utf-8">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="card-title">Nhập hàng: #{{ $prod->hh_ma }} - {{ $prod->hh_ten }}</h5>
+                    <br/>
+                    <input type="text" name="name" class="form-control" placeholder="Nhập Tên Lô Hàng..." required>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="date" name="date" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                   
+                            <input type="number" name="gia" class="form-control" placeholder="Nhập giá trị.." required>
+                        </div>
+                        <div class="col-md-4">
+                  
+                            <input type="number" name="soluong" class="form-control" placeholder="Nhập số lượng.." required>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="date" name="nsx" class="form-control" required placeholder="Ngày Sản xuất">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="date" name="hsd" class="form-control" required placeholder="Hạn sử dụng..">
+                        </div>
+                    </div>
+                    @csrf
+                    <br/>
+                    <textarea class="form-control" name="mota" placeholder="Nhập mô tả..." rows="5" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 @endforeach

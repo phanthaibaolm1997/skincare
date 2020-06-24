@@ -53,6 +53,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/add', 'HangHoaController@createProd')->name('prod.add.post');
         Route::get('/edit/{id}', 'AdminController@adminProdEdit')->name('prod.edit');
         Route::post('/edit', 'HangHoaController@updateProd')->name('prod.eidt.post');
+        Route::post('add-hang/{id}', 'HangHoaController@addHangOld')->name('admin.lohang.addOld');
     });
     Route::group(['prefix'=>'hinhanh'],function(){
         Route::get('/delete/{id}', 'HinhAnhController@delHA')->name('hinhanh.del');

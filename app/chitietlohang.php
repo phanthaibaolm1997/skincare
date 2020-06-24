@@ -43,4 +43,9 @@ class chitietlohang extends Model
 				'ctlh_dongia'=> $giagoc,
 			]);
 	}
+	public function getFirst($hh_ma){
+		return chitietlohang::where('hh_ma',$hh_ma)
+			->with('lohang')
+			->first();
+	}
 }

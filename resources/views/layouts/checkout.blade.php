@@ -202,7 +202,7 @@
 		
 		if(coin < price){
 			var result = price - coin;
-			var hahahihi = result+' đ';
+			var hahahihi = result+' đ <span class="badge badge-info>Đã trừ coin</span>';
 			$('#fee').html(hahahihi);
 		}else{
 			var result = price - coin;

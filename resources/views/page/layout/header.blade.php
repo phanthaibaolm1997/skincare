@@ -28,7 +28,7 @@
 					</li>
 					@if(Session::has('ss_kh_id'))
 					<li class="nav-item">
-						<a class="nav-link" href="{{ route('history') }}">Lịch sử</a>
+						<a class="nav-link" href="{{ route('history') }}">PROFILE CÁ NHÂN</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('logout-khachhang') }}">Thoát</a>

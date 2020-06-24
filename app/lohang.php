@@ -9,40 +9,6 @@ class lohang extends Model
 {
     protected $table = "lohang";
 	protected $primaryKey = 'lh_ma';
-	public $incrementing = false;
-
-// Filter Scope
-	public function scopeFilter($query, $param)
-	{
-		foreach ($param as $field => $value) {
-			$method = 'filter' . Str::studly($field);
-			if ($value === '') {
-				continue;
-			}
-			if (method_exists($this, $method)) {
-				$data = $this->{$method}($query, $value);
-				continue;
-			}
-			if (empty($this->filterable) || !is_array($this->filterable)) {
-				continue;
-			}
-			if (in_array($field, $this->filterable)) {
-				$query->where($this->table . '.' . $field, $value);
-				continue;
-			}
-			if (key_exists($field, $this->filterable)) {
-				$query->where($this->table . '.' . $this->filterable[$field], $value);
-				continue;
-			}
-		}
-
-		return $query;
-	}
-
-//fillable
-    protected $fillable = [
-		'lh_ngaynhap', 'lh_ten', "lh_trigia", "lh_mota" 
-    ];
     
 // Relationship
 	public function chitietlohang()
@@ -81,10 +47,7 @@ class lohang extends Model
         $create->ncc_ma = $ncc;
         $create->nv_ma = $nv_ma;
         $create->save();
-        if($create){
-            return true;
-        }
-        return false;
+        return $create->lh_ma;
     }
 
     public function getDetailLoHang($paginate){

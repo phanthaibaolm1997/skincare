@@ -126,7 +126,7 @@
 	<li class="active ">
 		<a href="{{ route('hanghoa.get') }}">
 			<i class="nc-icon nc-bank"></i>
-			<p>SẢN PHẨM</p>
+			<p>QUẢN LÝ SẢN PHẨM</p>
 		</a>
 	</li>
 	<li>
@@ -138,7 +138,7 @@
 	<li>
 		<a href="{{route('admin.post.get') }}">
 			<i class="nc-icon nc-pin-3"></i>
-			<p>TIN TỨC</p>
+			<p>QUẢN LÝ TIN TỨC</p>
 		</a>
 	</li>
 	<li>
@@ -150,25 +150,26 @@
 	<li>
 		<a href="{{route('admin.khachhang.get') }}">
 			<i class="nc-icon nc-single-02"></i>
-			<p>KHÁCH HÀNG</p>
+			<p>QUẢN LÝ KHÁCH HÀNG</p>
 		</a>
 	</li>
 	<li>
 		<a href="{{ route('admin.nhansu.get') }}">
 			<i class="nc-icon nc-tile-56"></i>
-			<p>NHÂN SỰ</p>
+			<p>QUẢN LÝ NHÂN SỰ</p>
 		</a>
 	</li>
 	<li>
 		<a href="{{ route('admin.order.get') }}">
 			<i class="nc-icon nc-caps-small"></i>
-			<p>ĐƠN HÀNG</p>
+			<p>QUẢN LÝ ĐƠN HÀNG</p>
 		</a>
 	</li>
-	<li class="active-pro">
+	<li >
 		<a href="{{ route('admin.lohang.get') }}">
 			<i class="nc-icon nc-spaceship"></i>
-			<p>NHẬP HÀNG</p>
+			<p>QUẢN LÝ LÔ HÀNG</p>
 		</a>
 	</li>
+
 </ul>

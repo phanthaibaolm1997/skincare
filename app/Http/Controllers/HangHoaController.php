@@ -9,6 +9,7 @@ use App\hinhanh;
 use App\hinhanhhanghoa;
 use App\chitietlohang;
 use App\chitietdactinh;
+use App\lohang;
 
 class HangHoaController extends Controller
 {
@@ -124,4 +125,29 @@ class HangHoaController extends Controller
     	return redirect()->back()->with('success', "chinh sua thành công!!");
 
 	}
+	public function addHangOld($id, Request $request){
+        $mota = $request->mota;
+        $date= $request->date;
+        $gia= $request->gia;
+        $soluong= $request->soluong;
+        $name= $request->name;
+        $ngaysx= $request->nsx;
+        $hsd= $request->hsd;
+        $nv_id = Session()->get('ss_nv_id');
+
+        $lohang = new lohang();
+        $hanghoa = new hanghoa();
+        $ctlh = new chitietlohang();
+
+        $data = $ctlh->getFirst($id);
+
+        $ncc = $data->lohang->ncc_ma;
+        $nsx = $data->lohang->nsx_ma;
+
+
+        $lh_ma = $lohang->createLoHang($name,$mota,$date,$gia,$ncc,$nsx,$nv_id);
+        $ctlh->createCTLH($id,$lh_ma,$ngaysx,$hsd,$gia,$soluong);
+        $hanghoa->updateSoLuong($id,$soluong);
+        return redirect()->back()->with('success', "Thêm mới thành công!!");
+    }
 }

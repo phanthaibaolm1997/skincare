@@ -9,7 +9,7 @@
 				Tiếp theo
 			</div>
 		</div>
-		<div class="hs-item set-bg" data-setbg="{{asset('assets/img/slider/2.jpg')}}" data-hash="slide-2">
+{{-- 		<div class="hs-item set-bg" data-setbg="{{asset('assets/img/slider/2.jpg')}}" data-hash="slide-2">
 			<div class="container">
 				<h2>Nothing is forever</h2>
 				<a href="#" class="site-btn">Chi tiết <i class="fa fa-angle-double-right"></i></a>
@@ -17,7 +17,7 @@
 			<div class="next-hs set-bg" data-setbg="{{asset('assets/img/slider/1.jpg')}}">
 				Tiếp theo
 			</div>
-		</div>
+		</div> --}}
 	</div>
 	<div class="hero-social-warp">
 		<p>Follow us on Social MEdia</p>
